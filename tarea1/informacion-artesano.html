@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Información Artesano</title>
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+    <body>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Santiago_2023_-_Versi%C3%B3n_cuadrada.svg/1200px-Santiago_2023_-_Versi%C3%B3n_cuadrada.svg.png"
+        alt="Logo de Juegos Panamericanos y Parapanamericanos Santiago 2023" width="200" height="200">
+        <div>
+            <h2>Información Artesano (hacer click en imagen para cambiar tamaño)</h2>
+            <p>Nombre: Jigglypuff</p>
+            <p>Teléfono: 939393939</p>
+            <p>Comuna: Santiago</p>
+            <p>Tipo de artesanía: Telas, Otro tipo, Cerámica</p>
+            <p>Fotos de artesanía:
+                <br>
+                <img id="image1" width="640" height="480" onclick="resizeImage(this, button=0)" src="https://xivalandia.com/cdn/shop/products/amirigumi_jiglypuff2_IG.jpg" alt="Jigglypuff amirigumi">
+                <br>
+                <img id="image2" width="640" height="480" onclick="resizeImage(this, button=0)" src="https://i.pinimg.com/736x/d4/ef/3a/d4ef3aaf7666b18b9addc5483766e1ea.jpg" alt="Jigglypuff arcilla">
+                <br>
+                <img id="image3" width="640" height="480" onclick="resizeImage(this, button=0)" src="https://i.etsystatic.com/26114526/r/il/be74d4/3403551029/il_570xN.3403551029_706q.jpg" alt="Jigglypuff's maceteros de cerámica">
+                <br>
+            </p>
+        </div>
+        <!-- Créditos a https://stackoverflow.com/questions/47845496/change-image-size-when-clicking-on-it-in-javascript#:~:text=function%20resizeImage(img)%20%7B%0A%20%20img.style.width%20%3D%20%22500px%22%3B%0A%20%20img.style.height%20%3D%20%22500px%22%3B%0A%7D -->
+        <a href="ver-artesanos.html">Volver al listado de artesanos.</a><br>
+        <a href="index.html">Volver al menú portada.</a>
+        <script>
+            function resizeImage(img, button) {
+                if (button == 0) {
+                    img.style.width = "1280px";
+                    img.style.height = "1024px";
+                    button = 1;
+                } else {
+                    img.style.width = "640px";
+                    img.style.height = "480px";
+                    button = 0;
+                }
+            }
+        </script>
+    </body>
+</html>

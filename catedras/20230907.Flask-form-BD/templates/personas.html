@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Ejemplo Flask con Base Datos</title>
+ </head>
+ <body>
+ <h1>Ejemplo Flask con Base de Datos</h1>
+{% if error %}
+<p style="color: red; background-color: yellow;">{{ error }}</p>
+{% endif %}
+{% if mensaje %}
+<p style="background-color: green;">{{ mensaje }}</p>
+{% endif %}
+{% if personas %}
+<h2>Listado de Personas</h2>
+<table border=1>
+  <tr>
+    <td><b>ID</b></td>
+    <td><b>Nombre</b></td>
+    <td><b>Apellido</b></td>
+  </tr>
+  {% for p in personas %}
+  <tr>
+    <td>{{ p.id }}</td>
+    <td>{{ p.nombre }}</td>
+    <td>{{ p.apellido }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+<h2> Ingreso de nueva persona: </h2>
+<form action="personas" method="post">
+Nombre   <input type="text" name="nombre" /><br />
+Apellido   <input type="text" name="apellido" /><br />
+<input type="submit" value=" > agregar persona " />
+</form>
+</body>
+</html>

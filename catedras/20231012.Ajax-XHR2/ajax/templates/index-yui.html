@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
+<script type="text/javascript">
+function llamadaAjax(){
+YUI().use('node-load', function (Y) {
+    // Replace the contents of the #content node with content.html.
+    Y.one('#myDiv').load('http://localhost:5000/ajax');
+});
+}
+</script>
+</head>
+<body>
+<h2>Ejemplo de Ajax</h2>
+
+<p>Listado de procesos</p>
+<button type="button" onclick="llamadaAjax()">Mostrar listado!</button>
+<pre id="myDiv"></pre>
+</body>
+</html>
+
+

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <header>
+        <h2>Ver Hinchas</h2>
+    </header>
+        <h3>Hacer click en una fila</h3>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Comuna</th>
+                <th>Deportes</th>
+                <th>Modo Transporte</th>
+                <th>Número celular</th>
+            </tr>
+            {% for hincha in data %}
+            <tr>
+                <td>{{ hincha.nombre }}</td>
+                <td>{{ hincha.comuna }}</td>
+                <td>{{ hincha.deportes }}</td>
+                <td>{{ hincha.modo_transporte }}</td>
+                <td>{{ hincha.celular }}</td>
+            </tr>
+
+        </table>
+        <script>
+            // redirige a la página de información del hincha en informacion_hincha.html
+            function Mostrar() {
+                window.location.href = "informacion_hincha.html";
+            }
+        </script>
+{% endblock %}

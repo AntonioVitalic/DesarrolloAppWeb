@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+let myFirstPromise = new Promise((resolve, reject) => {
+  // Llamamos a resolve(...) cuando lo que estábamos haciendo de forma 
+  // asíncrona fue exitoso, y reject(...) cuando falló.
+  // En este ejemplo, usamos setTimeout(...) para simular código asíncrono.
+  // En realidad, probablemente usará algo como XHR o una API HTML5.
+  setTimeout( function() {
+    resolve("Éxito!")  // ¡Hurra! ¡salió bien!
+  }, 1000)
+})
+
+myFirstPromise.then((successMessage) => {
+  // successMessage es lo que hayamos pasado en la función resolve(...) anterior.
+  // No tiene que ser una cadena, pero si es solo un mensaje de éxito, 
+  // probablemente lo sea.
+  console.log("¡Hurra! " + successMessage)
+});
+</script>
+</head>
+<body>
+<h2>Ejemplo de Promesas</h2>
+</body>
+</html>
+

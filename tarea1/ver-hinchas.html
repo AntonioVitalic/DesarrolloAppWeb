@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ver Hinchas</title>
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+    <body>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Santiago_2023_-_Versi%C3%B3n_cuadrada.svg/1200px-Santiago_2023_-_Versi%C3%B3n_cuadrada.svg.png" alt="Logo de Juegos Panamericanos y Parapanamericanos Santiago 2023" width="200" height="200">
+        <h2>Ver Hinchas (hacer click en una fila)</h2>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Comuna</th>
+                <th>Deportes</th>
+                <th>Modo Transporte</th>
+                <th>Número celular</th>
+            </tr>
+            <tr onclick="Mostrar()">
+                <td>Severus Snape</td>
+                <td>Providencia</td>
+                <td>Esgrima, Gimnasia artística</td>
+                <td>Particular</td>
+                <td>912345678</td>
+            </tr>
+            <tr onclick="Mostrar();">
+                <td>Manjiro Sano</td>
+                <td>La Florida</td>
+                <td>Tiro, Lucha</td>
+                <td>Locomoción pública</td>
+                <td>919901990</td>
+            </tr>
+            <tr onclick="Mostrar();">
+                <td>Hisashi Mitsui</td>
+                <td>Santiago</td>
+                <td>Básquetbol, Básquetbol 3x3, Clavados</td>
+                <td>Particular</td>
+                <td>914141414</td>
+            </tr>
+            <tr onclick="Mostrar();">
+                <td>Sakura Kinomoto</td>
+                <td>Providencia</td>
+                <td>Gimnasia rítmica, Atletismo, Pentatlón moderno</td>
+                <td>Locomoción pública</td>
+                <td>953535353</td>
+            </tr>
+            <tr onclick="Mostrar();">
+                <td>Nicolás Massú</td>
+                <td>Viña del Mar</td>
+                <td>Tenis</td>
+                <td>Particular</td>
+                <td>987654321</td>
+            </tr>
+        </table>
+        <a href="index.html">Volver al menú portada.</a>
+        <script>
+            function Mostrar() {
+                window.location.href = "informacion-hincha.html";
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Sistema de Juegos Panamericanos y Parapanamericanos Santiago 2023
+    </title>
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    {% block css %}{% endblock %}
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <!-- css obtenido de https://www.w3schools.com/css/tryit.asp?filename=trycss_navbar_horizontal_black -->
+  <body>
+    <header>
+      <div class="row">
+        <div class="column">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Santiago_2023_-_Versi%C3%B3n_cuadrada.svg/1200px-Santiago_2023_-_Versi%C3%B3n_cuadrada.svg.png" 
+          alt="Logo de Juegos Panamericanos y Parapanamericanos Santiago 2023" width="200" height="200">
+        </div>
+        <div class="column">
+          <iframe height="200" src="https://www.youtube.com/embed/qC9jrlVTcKs?autoplay=1&mute=1">
+          </iframe>
+        </div>
+        <div class="column">
+          <img src="https://copano.news/site-media/images/fiuporsiempre.jpg-600x325.png" alt="Fiu uwu" height="200">
+        </div>
+      </div>
+      <h1>Sistema de Juegos Panamericanos y Parapanamericanos Santiago 2023</h1>
+      
+    </header>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('index') }}">Inicio</a></li>
+        <li><a href="{{ url_for('registrar_artesano') }}">Registrar Artesano</a></li>
+        <li><a href="{{ url_for('registrar_hincha') }}">Registrar Hincha</a></li>
+        <li><a href="{{ url_for('ver_artesanos', num=1) }}">Ver Listado de Artesanos</a></li>
+        <li><a href="{{ url_for('ver_hinchas') }}">Ver Listado de Hinchas</a></li>
+        <li><a href="{{ url_for('estadisticas') }}">Estadísticas de Artesanos e Hinchas</a></li>
+      </ul>
+    </nav>
+  <section class="main-container">
+    {% block content %}{% endblock %}
+    {% block javascript %}{% endblock %}
+  </section>
+  </body>
+</html>
+  

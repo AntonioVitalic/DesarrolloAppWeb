@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <header>
+        <h2>Ver artesanos</h2>
+    </header>
+    <body>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Comuna</th>
+                <th>Tipo Artesanías</th>
+                <th>Fotos</th>
+            </tr>
+            {% for artesano in data %}
+            <tr>
+                <td>{{ artesano.nombre }}</td>
+                <td>{{ artesano.telefono }}</td>
+                <td>{{ artesano.comuna }}</td>
+                <td>{{ artesano.tipo_artesania }}</td>
+                <td>{{ artesano.fotos }}</td>
+                <td><button onclick="Mostrar()">Mostrar</button></td>
+            </tr>
+            {% endfor %}
+                
+        </table>
+        <script>
+            function Mostrar() {
+                window.location.href = "informacion_artesano.html";
+            }
+        </script>
+    </body>
+{% endblock %}

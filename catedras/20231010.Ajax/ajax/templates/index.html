@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+function llamadaAjax() {
+  document.getElementById("myDiv").innerHTML = "";
+  document.getElementById("waiting").style.display = "block";
+  xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function(){
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      document.getElementById("waiting").style.display = "none";
+      document.getElementById("myDiv").innerHTML = "<pre>"+xmlhttp.responseText+"</pre>";
+    }
+  }
+  xmlhttp.open("GET","http://localhost:5000/ajax",true);
+  xmlhttp.send();
+}
+</script>
+</head>
+<body>
+<h2>Ejemplo de Ajax</h2>
+
+<p>Listado de procesos</p>
+<button type="button" onclick="llamadaAjax()">Mostrar listado!</button>
+<div id="myDiv"></div>
+<div id="waiting" style="display:none;"><img src="static/dog-waiting-gif.gif" alt="zzz"></div>
+</body>
+</html>

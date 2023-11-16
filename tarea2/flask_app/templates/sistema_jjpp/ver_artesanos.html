@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <header>
+        <h2>Ver artesanos</h2>
+    </header>
+    <body>
+        <h3>Pendiente. Idea: hacer un for por cada artesano de la base de datos, 
+            e imprimir el contenido de cada {{entrada}}. Por ahora puse como placeholder,
+            el mismo contenido del archivo de la tarea 1.</h3>
+        <table>
+            <tr onclick="Mostrar();">
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Comuna</th>
+                <th>Tipo Artesanías</th>
+                <th>Fotos</th>
+            </tr>
+            <tr onclick="Mostrar();">
+                <td>Deathmask de Cancer</td>
+                <td>924242424</td>
+                <td>Capitan Pastene</td>
+                <td>Metal, Joyas</td>
+                <td><img width="120" height="120" src="https://3.bp.blogspot.com/-fTWV5lTsIcA/XjI5WJwxzRI/AAAAAAAAO44/kOOV5nPPWC8ukhOWABCelSc2EaKk5HuLQCKgBGAsYHg/s1600/01-2020-deathmask-cancer-ex-oce.jpg" 
+                    alt="Figura metálica de Deathmask de Cancer"></td>
+            </tr>
+            <tr onclick="Mostrar();">
+                <td>Richard Kruspe</td>
+                <td>919671967</td>
+                <td>Valdivia</td>
+                <td>Madera, Metal, Otro tipo</td>
+                <td><img width="120" height="120" src="https://m.media-amazon.com/images/I/61r0sYUijAL._AC_UF1000,1000_QL80_.jpg" 
+                    alt="Guitarra de madera de Richard Kruspe"></td>
+            </tr>
+            <tr onclick="Mostrar();">
+                <td>Hamtaro</td>
+                <td>919971997</td>
+                <td>Providencia</td>
+                <td>Cerámica</td>
+                <td><img width="120" height="120" src="https://i.pinimg.com/736x/e2/27/d7/e227d712431f58c98517fbef3e794986--craft-patterns-bead-patterns.jpg" 
+                    alt="Hamtaro"></td>
+            </tr>
+            <tr onclick="Mostrar();">
+                <td>Lady Di</td>
+                <td>919611961</td>
+                <td>Antofagasta</td>
+                <td>Joyas</td>
+                <td><img width="120" height="120" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHxPqCqv-spk3yUT841SHhNwTvSl2RoRVQYw&usqp=CAU" 
+                    alt="Collar de Lady Di"></td>
+            </tr>
+            <tr onclick="Mostrar();">
+                <td>Shishio</td>
+                <td>918461846</td>
+                <td>Santiago</td>
+                <td>Cerámica, Mimbre, Otro tipo</td>
+                <td><img width="120" height="120" src="https://i.etsystatic.com/36434107/r/il/885d2f/4040492678/il_300x300.4040492678_y8xu.jpg" 
+                    alt="Figura de Shishio"></td>
+            </tr>
+        </table>
+        <script>
+            function Mostrar() {
+                window.location.href = "informacion_artesano.html";
+            }
+        </script>
+    </body>
+{% endblock %}

@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block css %}
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css"
+    />
+{% endblock %}
+
+{% block content %}
+    <header>
+        <h2>Registrar hincha</h2>
+    </header>
+    
+        <form name="form_agregar_hincha" method="post">
+            <label for="deportes">Deporte(s) que interesa apoyar</label><br>
+            <select id="deportes" name="deportes" multiple required>
+                <option value="Clavados">Clavados</option>
+                <option value="Natación">Natación</option>
+                <option value="Natación artística">Natación artística</option>
+                <option value="Polo acuático">Polo acuático</option>
+                <option value="Natación en Aguas abiertas">Natación en Aguas abiertas</option>
+                <option value="Maratón">Maratón</option>
+                <option value="Marcha">Marcha</option>
+                <option value="Atletismo">Atletismo</option>
+                <option value="Bádminton">Bádminton</option>
+                <option value="Balonmano">Balonmano</option>
+                <option value="Básquetbol">Básquetbol</option>
+                <option value="Básquetbol 3x3">Básquetbol 3x3</option>
+                <option value="Béisbol">Béisbol</option>
+                <option value="Boxeo">Boxeo</option>
+                <option value="Bowling">Bowling</option>
+                <option value="Breaking">Breaking</option>
+                <option value="Canotaje Slalom">Canotaje Slalom</option>
+                <option value="Canotaje de velocidad">Canotaje de velocidad</option>
+                <option value="BMX Freestyle">BMX Freestyle</option>
+                <option value="BMX Racing">BMX Racing</option>
+                <option value="Mountain Bike">Mountain Bike</option>
+                <option value="Ciclismo pista">Ciclismo pista</option>
+                <option value="Ciclismo ruta">Ciclismo ruta</option>
+                <option value="Adiestramiento ecuestre">Adiestramiento ecuestre</option>
+                <option value="Evento completo ecuestre">Evento completo ecuestre</option>
+                <option value="Salto ecuestre">Salto ecuestre</option>
+                <option value="Escalada deportiva">Escalada deportiva</option>
+                <option value="Esgrima">Esgrima</option>
+                <option value="Esquí acuático y Wakeboard">Esquí acuático y Wakeboard</option>
+                <option value="Fútbol">Fútbol</option>
+                <option value="Gimnasia artística Masculina">Gimnasia artística Masculina</option>
+                <option value="Gimnasia artística Femenina">Gimnasia artística Femenina</option>
+                <option value="Gimnasia rítmica">Gimnasia rítmica</option>
+                <option value="Gimnasia trampolín">Gimnasia trampolín</option>
+                <option value="Golf">Golf</option>
+                <option value="Hockey césped">Hockey césped</option>
+                <option value="Judo">Judo</option>
+                <option value="Karate">Karate</option>
+                <option value="Levantamiento de pesas">Levantamiento de pesas</option>
+                <option value="Lucha">Lucha</option>
+                <option value="Patinaje artístico">Patinaje artístico</option>
+                <option value="Skateboarding">Skateboarding</option>
+                <option value="Patinaje velocidad">Patinaje velocidad</option>
+                <option value="Pelota vasca">Pelota vasca</option>
+                <option value="Pentatlón moderno">Pentatlón moderno</option>
+                <option value="Racquetball">Racquetball</option>
+                <option value="Remo">Remo</option>
+                <option value="Rugby 7">Rugby 7</option>
+                <option value="Sóftbol">Sóftbol</option>
+                <option value="Squash">Squash</option>
+                <option value="Surf">Surf</option>
+                <option value="Taekwondo">Taekwondo</option>
+                <option value="Tenis">Tenis</option>
+                <option value="Tenis de mesa">Tenis de mesa</option>
+                <option value="Tiro">Tiro</option>
+                <option value="Tiro con arco">Tiro con arco</option>
+                <option value="Triatlón">Triatlón</option>
+                <option value="Vela">Vela</option>
+                <option value="Vóleibol">Vóleibol</option>
+                <option value="Vóleibol playa">Vóleibol playa</option>
+            </select><br>
+            
+            <label for="region">Región</label><br>
+            <select id="region" required onchange="cargarComuna()">
+                <option value="" selected>Seleccione Región</option>
+                <option value="Región Arica y Parinacota">Región de Arica y Parinacota</option>
+                <option value="Región de Tarapacá">Región de Tarapacá</option>
+                <option value="Región de Antofagasta">Región de Antofagasta</option>
+                <option value="Región de Atacama">Región de Atacama</option>
+                <option value="Región de Coquimbo">Región de Coquimbo</option>
+                <option value="Región de Valparaíso">Región de Valparaíso</option>
+                <option value="Región Metropolitana de Santiago">Región Metropolitana</option>
+                <option value="Región del Libertador Bernardo Ohiggins">Región del Libertador Gral. Bernardo O'Higgins</option>
+                <option value="Región del Maule">Región del Maule</option>
+                <option value="Región del Ñuble">Región del Ñuble</option>
+                <option value="Región del Biobío">Región del Biobío</option>
+                <option value="Región de La Araucanía">Región de La Araucanía</option>
+                <option value="Región de Los Ríos">Región de Los Ríos</option>
+                <option value="Región de Los Lagos">Región de Los Lagos</option>
+                <option value="Región Aisén del General Carlos Ibáñez del Campo">Región de Aysén del Gral. Carlos Ibáñez del Campo</option>
+                <option value="Región de Magallanes y la Antártica Chilena">Región de Magallanes y de la Antártica Chilena</option>
+            </select><br>
+            <label for="comuna">Comuna</label><br>
+            <select id="comuna" required>
+                <option value="" selected>Seleccione Comuna</option>
+            </select><br>
+    
+        
+            <label for="transporte">Modo de transporte</label><br>
+            <select id="transporte" name="transporte" required>
+                <option value="" selected>Seleccione modo de transporte</option>
+                <option value="particular">Particular</option>
+                <option value="locomoción pública">Locomoción pública</option>
+            </select><br>
+        
+            <label for="nombre">Nombre</label><br>
+            <input type="text" id="nombre" name="nombre" minlength="3" maxlength="80" required><br>
+        
+            <label for="email">Email contacto</label><br>
+            <input type="text" id="email" name="email" maxlength="30" required><br>
+        
+            <label for="celular">Número celular contacto</label><br>
+            <input type="text" id="celular" name="celular" maxlength="15"><br>
+        
+            <label for="comentarios">Comentarios adicionales</label><br>
+            <input type="text" id="comentarios" name="comentarios" maxlength="80"><br>
+    
+            <label for="registro">Enviar formulario:</label><br>
+            <button type="submit" id="registro">Registrar Hincha</button>
+    
+        </form>
+{% endblock %}
+
+{% block javascript %}
+<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+<!-- Créditos a https://github.com/habibmhamadi/multi-select-tag por la selección múltiple para deportes-->
+<script>
+    new MultiSelectTag('deportes', {
+        rounded: true,    // default true
+        shadow: false,      // default false
+        placeholder: 'Search',  // default Search...
+        onChange: function(values) {
+            console.log(values)
+        }
+        })
+</script>
+<script src="{{ url_for('static', filename='js/cargarComuna.js') }}"></script>
+<script src="{{ url_for('static', filename='js/validar_formulario.js') }}"></script>
+{% endblock %}

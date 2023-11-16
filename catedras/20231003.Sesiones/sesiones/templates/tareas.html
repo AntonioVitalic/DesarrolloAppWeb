@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Flask: Tareas con sesiones</title>
+ </head>
+ <body>
+ <h1>Ejemplo Flask y Sesiones</h1>
+{% if tareas %}
+<h2>Listado de Tareas</h2>
+<ul>
+  {% for t in tareas %}
+    <li>{{ t }} </li>
+  {% endfor %}
+</ul>
+{% endif %}
+<h2> Ingreso de tarea: </h2>
+<form action="tareas" method="post">
+Tarea   <input type="text" name="tarea" /><br />
+<input type="submit" value=" > agregar tarea " />
+</form>
+</body>
+</html>

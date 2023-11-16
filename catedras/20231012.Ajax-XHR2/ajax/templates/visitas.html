@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Estadísticas: Visitas por día</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link href="static/bootstrap.min.css" rel="stylesheet" />
+<script src="static/jquery-3.5.1.min.js"></script>
+<script src="static/bootstrap.min.js"></script>
+<script src="static/jquery-2.1.1.js"></script>
+<script src="static/jquery.flot.js"></script>
+<script src="static/jquery.flot.time.js"></script>
+<script src="static/jquery.flot.navigate.js"></script>
+
+<script type="text/javascript">
+$(function() {
+		// Fetch one series, adding to what we already have
+		var dataurl = 'http://localhost:5000/datos-visitas';
+
+		var plot;
+
+		function onDataReceived(series) {
+			var datos = {};
+			datos.label = "Visitas por día";
+			datos.data = series;
+			datos.hoverable = true;
+
+			var firstDay = series[0][0];
+			var today = new Date().getTime();
+			var day = 24 * 60 * 60 * 1000
+			var month = 30 * day;
+
+			var options = {
+				lines : {
+					show : true
+				},
+				points : {
+					show : true
+				},
+				grid : {
+					hoverable : true,
+					markings : weekendAreas
+				},
+				xaxis : {
+					mode : "time",
+					timeformat : "%Y-%m-%d",
+					min : today - 6 * month,
+					max : today,
+					panRange : [ firstDay - month, today + month ],
+					zoomRange : [ 7 * day, today - firstDay + 2 * month ]
+				},
+				yaxis : {
+					zoomRange : false,
+					panRange : false
+				},
+				zoom : {
+					interactive : true
+				},
+				pan : {
+					interactive : true
+				}
+			};
+
+			plot = $.plot("#placeholder", [ datos ], options);
+
+		}
+
+		$.ajax({
+			url : dataurl,
+			type : "GET",
+			dataType : "json",
+			success : onDataReceived
+		});
+
+		bindTooltipDate("#placeholder");
+	});
+
+function bindTooltipDate(id) {
+	$(id).bind("plothover", function(event, pos, item) {
+
+		if (item) {
+			var x = item.datapoint[0], y = item.datapoint[1];
+			var dateTxt = formatDate(new Date(x));
+			$("#tooltip").html(dateTxt + ": " + y).css({
+				top : item.pageY + 5,
+				left : item.pageX + 5
+			}).fadeIn(200);
+
+		} else {
+			$("#tooltip").hide();
+		}
+
+	});
+
+}
+function weekendAreas(axes) {
+	var markings = [], d = new Date(axes.xaxis.min);
+	// go to the first Saturday
+	d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 1) % 7))
+	d.setUTCSeconds(0);
+	d.setUTCMinutes(0);
+	d.setUTCHours(0);
+	var i = d.getTime();
+	// when we don't set yaxis, the rectangle automatically
+	// extends to infinity upwards and downwards
+	do {
+		markings.push({
+			xaxis : {
+				from : i,
+				to : i + 2 * 24 * 60 * 60 * 1000
+			}
+		});
+		i += 7 * 24 * 60 * 60 * 1000;
+	} while (i < axes.xaxis.max);
+	return markings;
+}
+function formatDate(d) {
+	var dd = d.getDate()
+	if (dd < 10)
+		dd = '0' + dd
+	var mm = d.getMonth() + 1
+	if (mm < 10)
+		mm = '0' + mm
+	var yy = d.getFullYear();// % 100
+	if (yy < 10)
+		yy = '0' + yy
+	return yy + '-' + mm + '-' + dd;
+}
+
+</script>
+<style>
+.demo-container {
+	box-sizing: border-box;
+	width: 850px;
+	height: 450px;
+	padding: 20px 15px 15px 15px;
+	margin: 15px auto 30px auto;
+	border: 1px solid #ddd;
+	background: #fff;
+	background: linear-gradient(#f6f6f6 0, #fff 50px);
+	background: -o-linear-gradient(#f6f6f6 0, #fff 50px);
+	background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);
+	background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);
+	background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);
+	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+	-o-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+	-ms-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.demo-placeholder {
+	width: 100%;
+	height: 100%;
+	font-size: 14px;
+	line-height: 1.2em;
+}
+
+#content {
+	width: 880px;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+
+#tooltip {
+	position: absolute;
+	display: none;
+	border: 1px solid #fdd;
+	padding: 2px; 
+	background-color : #fee;
+	opacity: 0.80
+}
+</style>
+
+</head>
+<body>
+<div id="header">
+    <h2>Visitas por Día</h2>
+	</div>
+
+        <div id="content">
+		<div class="demo-container">
+			<div id="placeholder" class="demo-placeholder"></div>
+		</div>
+	</div>
+<div id="tooltip"></div>
+
+</body>
+</html>

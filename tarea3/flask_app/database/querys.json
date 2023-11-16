@@ -1,0 +1,22 @@
+{
+    "insertar_artesano": "INSERT INTO artesano (comuna_id, descripcion_artesania, nombre, email, celular) VALUES (%s,%s,%s,%s,%s);",
+    "obtener_list_artesano_desde_mas_reciente": "SELECT id, comuna_id, descripcion_artesania, nombre, email, celular FROM artesano ORDER BY id DESC;",
+    "obtener_list_artesano_desde_mas_reciente_limitado_primeros_5": "SELECT id, comuna_id, descripcion_artesania, nombre, email, celular FROM artesano ORDER BY id DESC LIMIT 0, 5;",
+    "obtener_list_artesano_desde_mas_reciente_limitado_siguientes_5": "SELECT id, comuna_id, descripcion_artesania, nombre, email, celular FROM artesano ORDER BY id DESC LIMIT 5, 5;",
+    "obtener_list_artesano_con_nombre_comuna_en_lugar_de_ID": "SELECT artesano.id, comuna.nombre, descripcion_artesania, artesano.nombre, email, celular FROM artesano, comuna WHERE artesano.comuna_id=comuna.id ORDER BY id DESC LIMIT 5, 5;",
+    "get_artesanos_by_page_prev_next": "SELECT artesano.id, comuna.nombre, descripcion_artesania, artesano.nombre, email, celular FROM artesano, comuna WHERE artesano.comuna_id=comuna.id ORDER BY id DESC LIMIT %s, %s;",
+    
+    "get_comuna_id_by_comuna": "SELECT id FROM comuna WHERE nombre=%s;",
+
+    "insertar_artesano_tipo": "INSERT INTO artesano_tipo (artesano_id, tipo_artesania_id) VALUES (%s,%s);",
+    "get_tipo_artesania_id_by_tipo_artesania": "SELECT id FROM tipo_artesania WHERE nombre=%s;",
+    "obtener_tipos_artesania_de_artesano_particular": "SELECT TA.nombre FROM tipo_artesania TA, artesano_tipo AT WHERE AT.tipo_artesania_id=TA.id AND AT.artesano_id=%s;",
+
+    "insertar_foto": "INSERT INTO foto (ruta_archivo, nombre_archivo, artesano_id) VALUES (%s,%s,%s);",
+    "obtener_fotos_informadas_por_artesano": "SELECT ruta_archivo, nombre_archivo FROM foto WHERE artesano_id=%s",
+    
+    "obtener_el_ultimo_id_insertado": "SELECT LAST_INSERT_ID();",
+
+    "insertar_hincha": "INSERT INTO hincha (comuna_id, modo_transporte, nombre, email, celular, comentarios) VALUES (%s,%s,%s,%s,%s,%s);",
+    "insertar_hincha_deporte": "INSERT INTO hincha_deporte (hincha_id, deporte_id) VALUES (%s,%s);"
+}
