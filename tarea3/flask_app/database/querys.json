@@ -20,5 +20,7 @@
 
     "insertar_hincha": "INSERT INTO hincha (comuna_id, modo_transporte, nombre, email, celular, comentarios) VALUES (%s,%s,%s,%s,%s,%s);",
     "insertar_hincha_deporte": "INSERT INTO hincha_deporte (hincha_id, deporte_id) VALUES (%s,%s);",
-    "obtener_deportes_de_hincha_particular": "SELECT D.nombre FROM deporte D, hincha_deporte HD WHERE HD.deporte_id=D.id AND HD.hincha_id=%s;"
+    "obtener_deportes_de_hincha_particular": "SELECT D.nombre FROM deporte D, hincha_deporte HD WHERE HD.deporte_id=D.id AND HD.hincha_id=%s;",
+    "get_modo_transporte_de_hincha_particular": "SELECT modo_transporte FROM hincha WHERE id=%s;",
+    "get_celular_de_hincha_particular": "SELECT celular FROM hincha WHERE id=%s;"
 }

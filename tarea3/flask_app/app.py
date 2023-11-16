@@ -41,13 +41,18 @@ def registrar_hincha():
 
         if validate_register_hincha(deportes, region, comuna, transporte, nombre, email, celular, comentarios):
 
-            # obtenemos la comuna_id a partir de la comuna
+            # 1. obtenemos la comuna_id a partir de la comuna,
+            # esto porque no se guarda la comuna directamente en la tabla hincha
             comuna_id = db.get_comuna_id_by_comuna(comuna)
 
-            # guardamos hincha en la base de datos
+            # 2. guardamos hincha en la base de datos
             db.insertar_hincha(comuna_id, transporte, nombre, email, celular, comentarios)
 
-            # obtenemos el id del hincha, para guardar el deporte
+            # 3. obtenemos el id del hincha, para guardar el deporte en la tabla hincha_deporte
+            hincha_id = db.obtener_el_ultimo_id_insertado()
+
+            # 4. guardamos el deporte en la base de datos
+            db.insertar_hincha_deporte(hincha_id, deportes)
         
     return render_template("index.html")
 
@@ -68,28 +73,32 @@ def registrar_artesano():
         celular = request.form.get("celular-artesano")
 
         if validate_register_artesano(region, comuna, tipo_artesania, descripcion, fotos, nombre, email, celular):
-            # 1. generate random name for img
+            # 1. generamos un nombre random para la imagen
             _filename = hashlib.sha256(
                 secure_filename(fotos.filename).encode("utf-8")
                 ).hexdigest()
             _extension = filetype.guess(fotos).extension
             img_filename = f"{_filename}.{_extension}"
 
-            # 2. save img as a file
+            # 2. guardamos imagen
             fotos.save(os.path.join(app.config["UPLOAD_FOLDER"], img_filename))
 
-            # 3. save insert artesano form in db with db.insertar_artesano(comuna_id, descripcion_artesania, nombre, email, celular)
+            # 3. obtenemos la comuna_id a partir de la comuna,
+            # esto porque no se guarda la comuna directamente en la tabla arteano
             comuna_id = db.get_comuna_id_by_comuna(comuna)
+
+            # 4. guardamos artesano en la base de datos
             db.insertar_artesano(comuna_id, descripcion, nombre, email, celular)
 
-            # 4. obtener_el_ultimo_id_insertado from db
+            # 5. obtener_el_ultimo_id_insertado from db,
+            # para guardar el tipo_artesania en la tabla artesano_tipo
             artesano_id = db.obtener_el_ultimo_id_insertado()
 
-            # 5. insertar_artesano_tipo(artesano_id, tipo_artesania_id)
+            # 6. insertar_artesano_tipo(artesano_id, tipo_artesania_id)
             tipo_artesania_id = db.get_tipo_artesania_id_by_tipo_artesania(tipo_artesania)
             db.insertar_artesano_tipo(artesano_id, tipo_artesania_id)
 
-            # 6. insertar_foto(ruta_archivo, nombre_archivo, artesano_id)
+            # 7. insertar_foto(ruta_archivo, nombre_archivo, artesano_id)
             db.insertar_foto(app.config["UPLOAD_FOLDER"], img_filename, artesano_id)
             
     return render_template("index.html")

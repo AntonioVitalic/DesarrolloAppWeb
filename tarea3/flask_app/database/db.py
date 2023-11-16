@@ -154,12 +154,33 @@ def insertar_hincha(comuna_id, modo_transporte, nombre, email, celular, comentar
 	cursor = conn.cursor()
 	cursor.execute(QUERY_DICT["insertar_hincha"], (comuna_id, modo_transporte, nombre, email, celular, comentarios))
 	conn.commit()
-	# Obtener el ID del hincha recién insertado
-	hincha_id = obtener_el_ultimo_id_insertado()
-	# con el hincha_id, insertar los deportes
+	
+def insertar_hincha_deporte(hincha_id, deporte_id):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["insertar_hincha_deporte"], (hincha_id, deporte_id))
+	conn.commit()
 
-def insertar_hincha_deporte():
-	pass
+def obtener_deportes_de_hincha_particular(hincha_id):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["obtener_deportes_de_hincha_particular"], (hincha_id))
+	deporte = cursor.fetchone()
+	return deporte
+
+def get_modo_transporte_de_hincha_particular(hincha_id):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["get_modo_transporte_de_hincha_particular"], (hincha_id,))
+	modo_transporte = cursor.fetchone()
+	return modo_transporte
+
+def get_celular_de_hincha_particular(hincha_id):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["get_celular_de_hincha_particular"], (hincha_id,))
+	celular = cursor.fetchone()
+	return celular
 
 def obtener_datos():
 	# obtenermos datos de hinchas y artesanos para graficar los dos graficos en estadisticas.html
