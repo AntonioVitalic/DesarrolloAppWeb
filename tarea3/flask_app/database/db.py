@@ -80,6 +80,13 @@ def get_comuna_id_by_comuna(comuna):
 	comuna_id = cursor.fetchone()
 	return comuna_id
 
+def get_comuna_by_comuna_id(comuna_id):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["get_comuna_by_comuna_id"], (comuna_id,))
+	comuna = cursor.fetchone()
+	return comuna
+
 def get_artesanos_by_page_prev_next(pag_prev, pag_next):
 	conn = get_conn()
 	cursor = conn.cursor()
@@ -155,16 +162,18 @@ def insertar_hincha_deporte():
 	pass
 
 def obtener_datos():
+	# obtenermos datos de hinchas y artesanos para graficar los dos graficos en estadisticas.html
+	# 
     conn = get_conn()
     cursor = conn.cursor()
 
     # Obtener datos de artesanos
-    cursor.execute("SELECT id FROM artesano")
+    cursor.execute("SELECT * FROM artesano;")
     resultados_artesanos = cursor.fetchall()
     datos_artesanos = [resultado[0] for resultado in resultados_artesanos]
 
     # Obtener datos de hinchas
-    cursor.execute("SELECT nombre FROM hincha")
+    cursor.execute("SELECT * FROM hincha;")
     resultados_hinchas = cursor.fetchall()
     datos_hinchas = [resultado[0] for resultado in resultados_hinchas]
 
