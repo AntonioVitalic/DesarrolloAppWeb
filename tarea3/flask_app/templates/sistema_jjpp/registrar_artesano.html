@@ -9,6 +9,7 @@
     </header>
     <body>
         <form name="form_agregar_artesano" action="{{url_for('registrar_artesano')}}" method="post" enctype="multipart/form-data">
+            
             <label for="region">Región</label><br>
             <select id="region" required onchange="cargarComuna()">
                 <option value="" selected>Seleccione Región</option>

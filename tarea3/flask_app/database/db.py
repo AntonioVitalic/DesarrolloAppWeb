@@ -182,6 +182,13 @@ def get_celular_de_hincha_particular(hincha_id):
 	celular = cursor.fetchone()
 	return celular
 
+def get_hinchas_by_page_prev_next(pag_prev, pag_next):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["get_hinchas_by_page_prev_next"], (pag_prev, pag_next))
+	hinchas = cursor.fetchall()
+	return hinchas
+
 def obtener_datos():
 	# obtenermos datos de hinchas y artesanos para graficar los dos graficos en estadisticas.html
 	# 

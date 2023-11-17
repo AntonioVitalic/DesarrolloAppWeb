@@ -15,12 +15,14 @@
             </tr>
             {% for hincha in data %}
             <tr>
-                <td>{{ hincha.nombre }}</td>
-                <td>{{ hincha.comuna }}</td>
+                <td>{{ hincha.hincha_nombre }}</td>
+                <td>{{ hincha.comuna_nombre }}</td>
                 <td>{{ hincha.deportes }}</td>
                 <td>{{ hincha.modo_transporte }}</td>
                 <td>{{ hincha.celular }}</td>
             </tr>
+
+            {% endfor %}
 
         </table>
         <script>

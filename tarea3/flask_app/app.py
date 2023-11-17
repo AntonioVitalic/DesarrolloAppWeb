@@ -43,7 +43,9 @@ def registrar_hincha():
 
             # 1. obtenemos la comuna_id a partir de la comuna,
             # esto porque no se guarda la comuna directamente en la tabla hincha
+            print("hincha", comuna)
             comuna_id = db.get_comuna_id_by_comuna(comuna)
+            print("hincha", comuna_id)
 
             # 2. guardamos hincha en la base de datos
             db.insertar_hincha(comuna_id, transporte, nombre, email, celular, comentarios)
@@ -85,7 +87,9 @@ def registrar_artesano():
 
             # 3. obtenemos la comuna_id a partir de la comuna,
             # esto porque no se guarda la comuna directamente en la tabla arteano
+            print("artesano", comuna)
             comuna_id = db.get_comuna_id_by_comuna(comuna)
+            print("artesano", comuna_id)
 
             # 4. guardamos artesano en la base de datos
             db.insertar_artesano(comuna_id, descripcion, nombre, email, celular)
@@ -104,10 +108,30 @@ def registrar_artesano():
     return render_template("index.html")
 
 
-@app.route("/ver_hinchas", methods=["GET", "POST"])
-def ver_hinchas():
-    # siguiente tarea
-    return render_template("ver_hinchas.html")
+@app.route("/ver_hinchas/<int:num>", methods=["GET", "POST"])
+def ver_hinchas(num):
+    data = []
+    pageinfo = {}
+    if num <= 1:
+        pageinfo["prev"] = False
+        pageinfo["next"] = True
+        data = db.get_hinchas_by_page_prev_next(0, 5)
+    else:
+        pageinfo["prev"] = True
+        data = db.get_hinchas_by_page_prev_next((num-1)*5, 10)
+        if len(data) < 5:
+            pageinfo["next"] = False
+        else:
+            pageinfo["next"] = True
+    
+    hincha_id, comuna_nombre, modo_transporte, hincha_nombre, email, celular, comentarios = data
+
+    # obtenermos deportes de hincha
+    deportes = db.obtener_deportes_de_hincha_particular(hincha_id)
+
+    final_data = [hincha_nombre, comuna_nombre, deportes, modo_transporte, celular]
+
+    return render_template("ver_hinchas.html", data=final_data, pageinfo=pageinfo)
 
 @app.route("/ver_artesanos/<int:num>", methods=["GET", "POST"])
 def ver_artesanos(num):
@@ -131,7 +155,17 @@ def ver_artesanos(num):
         else:
             pageinfo["next"] = True
 
-    return render_template("ver_artesanos.html", data=data, pageinfo=pageinfo)
+    artesano_id, comuna_nombre, descripcion_artesania, artesano_nombre, email, celular = data
+
+    # obtenermos tipos_artesania de artesano
+    tipo_artesania = db.obtener_tipos_artesania_de_artesano_particular(artesano_id)
+
+    # obtenemos fotos informadas por artesano
+    fotos = db.obtener_fotos_informadas_por_artesano(artesano_id)
+
+    final_data = [artesano_nombre, celular, comuna_nombre, tipo_artesania, fotos]
+
+    return render_template("ver_artesanos.html", data=final_data, pageinfo=pageinfo)
 
 @app.route("/informacion_hincha", methods=["GET", "POST"])
 def informacion_hincha(id):

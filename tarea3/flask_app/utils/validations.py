@@ -2,7 +2,7 @@ import re
 import filetype
 
 def validate_username(value):
-    return value and len(value) > 4
+    return value and len(value) > 3 and len(value) < 80
 
 
 def validate_password(value):
@@ -48,8 +48,14 @@ def validate_conf_img(conf_img):
 def validate_region_comuna(region, comuna):
     return True
 
+def validate_comentarios(comentarios):
+    if isinstance(comentarios, str) and len(comentarios) <= 80:
+        return True
+    else:
+        return False
+
 def validate_tipo_artesania(tipo_artesania):
-    lista = ["Mármol", "Madera", "Cerámica", "Mimbre", "Metal", "Cuero", "Telas", "Joyas", "Otro tipo"]
+    lista = ["mármol", "madera", "cerámica", "mimbre", "metal", "cuero", "telas", "joyas", "otro"]
     return tipo_artesania in lista
 
 def validate_descripcion(descripcion):
@@ -77,16 +83,34 @@ def validate_img(fotos):
     return True
 
 def validate_nombre(nombre):
-    return nombre and len(nombre) > 4
+    if isinstance(nombre, str) and 3 <= len(nombre) <= 80:
+        return True
+    else:
+        return False
 
 def validate_email(email):
     return "@" in email
 
 def validate_celular(celular):
-    return celular and len(celular) == 9
+    if isinstance(celular, str) and celular.isdigit() and len(celular) == 9:
+        return True
+    else:
+        return False
+
+def validate_transporte(transporte):
+    lista = ["particular", "locomoción pública"]
+    return transporte in lista
+
+def validate_deporte(deporte):
+    lista = ["Clavados", "Natación", "Natación artística", "Polo acuático", "Natación en Aguas abiertas", "Maratón", "Marcha", "Atletismo", "Bádminton", "Balonmano", "Básquetbol", "Básquetbol 3x3", "Béisbol", "Boxeo", "Bowling", "Breaking", "Canotaje Slalom", "Canotaje de velocidad", "BMX Freestyle", "BMX Racing", "Mountain Bike", "Ciclismo pista", "Ciclismo ruta", "Adiestramiento ecuestre", "Evento completo ecuestre", "Salto ecuestre", "Escalada deportiva", "Esgrima", "Esquí acuático y Wakeboard", "Fútbol", "Gimnasia artística Masculina", "Gimnasia artística Femenina", "Gimnasia rítmica", "Gimnasia trampolín", "Golf", "Hockey césped", "Judo", "Karate", "Levantamiento de pesas", "Lucha", "Patinaje artístico", "Skateboarding", "Patinaje velocidad", "Pelota vasca", "Pentatlón moderno", "Racquetball", "Remo", "Rugby 7", "Sóftbol", "Squash", "Surf", "Taekwondo", "Tenis", "Tenis de mesa", "Tiro", "Tiro con arco", "Triatlón", "Vela", "Vóleibol", "Vóleibol playa"]
+    return deporte in lista
 
 def validate_register_artesano(region, comuna, tipo_artesania, descripcion, fotos, nombre, email, celular):
-    return validate_region_comuna(region, comuna) and validate_tipo_artesania(tipo_artesania) and validate_descripcion(descripcion) and validate_img(fotos) and validate_nombre(nombre) and validate_email(email) and validate_celular(celular)
+    return validate_region_comuna(region, comuna) and validate_tipo_artesania(tipo_artesania)\
+          and validate_descripcion(descripcion) and validate_img(fotos) and \
+            validate_nombre(nombre) and validate_email(email) and validate_celular(celular)
 
 def validate_register_hincha(deporte, region, comuna, transporte, nombre, email, celular, comentarios):
-    return True
+    return validate_deporte(deporte) and validate_region_comuna(region, comuna)\
+          and validate_transporte(transporte) and validate_nombre(nombre) \
+        and validate_email(email) and validate_celular(celular) and validate_comentarios(comentarios)
