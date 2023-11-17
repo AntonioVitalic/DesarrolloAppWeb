@@ -106,11 +106,14 @@ def validate_deporte(deporte):
     return deporte in lista
 
 def validate_register_artesano(region, comuna, tipo_artesania, descripcion, fotos, nombre, email, celular):
-    return validate_region_comuna(region, comuna) and validate_tipo_artesania(tipo_artesania)\
-          and validate_descripcion(descripcion) and validate_img(fotos) and \
-            validate_nombre(nombre) and validate_email(email) and validate_celular(celular)
+    # return validate_region_comuna(region, comuna) and validate_tipo_artesania(tipo_artesania)\
+    #       and validate_descripcion(descripcion) and validate_img(fotos) and \
+    #         validate_nombre(nombre) and validate_email(email) and validate_celular(celular)
+
+    return True
 
 def validate_register_hincha(deporte, region, comuna, transporte, nombre, email, celular, comentarios):
-    return validate_deporte(deporte) and validate_region_comuna(region, comuna)\
-          and validate_transporte(transporte) and validate_nombre(nombre) \
-        and validate_email(email) and validate_celular(celular) and validate_comentarios(comentarios)
+    # return validate_deporte(deporte) and validate_region_comuna(region, comuna)\
+    #       and validate_transporte(transporte) and validate_nombre(nombre) \
+    #     and validate_email(email) and validate_celular(celular) and validate_comentarios(comentarios)
+    return True

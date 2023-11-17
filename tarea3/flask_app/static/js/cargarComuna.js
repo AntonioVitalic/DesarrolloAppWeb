@@ -89,7 +89,7 @@ function cargarComuna(){
                 selectTipos.add(option);
             });
     } else if (region == "Región del Biobío") {
-        (["Concepcion", "Coronel", "Chiguayante", "Florida", "Hualqui", "Lota", "Penco", "San Pedro de la Paz", "Santa Juana", "Talcahuano", "Tome", "Hualpen", "Lebu", "Arauco", "Cañete", "Contulmo", "Curanilahue", "Los alamos", "Tirua", "Los angeles", "Antuco", "Cabrero", "Laja", "Mulchen", "Nacimiento", "Negrete", "Quilaco", "Quilleco", "San Rosendo", "Santa Barbara", "Tucapel", "Yumbel", "Alto Biobio"]).forEach(
+        (["Concepcion", "Coronel", "Chiguayante", "Florida", "Hualqui", "Lota", "Penco", "San Pedro de la Paz", "Santa Juana", "Talcahuano", "Tome", "Hualpen", "Lebu", "Arauco", "Cañete", "Contulmo", "Curanilahue", "Los Alamos", "Tirua", "Los Angeles", "Antuco", "Cabrero", "Laja", "Mulchen", "Nacimiento", "Negrete", "Quilaco", "Quilleco", "San Rosendo", "Santa Barbara", "Tucapel", "Yumbel", "Alto Biobio"]).forEach(
             (element) => {
                 let option = document.createElement("option");
                 option.text = element;
@@ -97,7 +97,7 @@ function cargarComuna(){
                 selectTipos.add(option);
             });
     } else if (region == "Región de La Araucanía") {
-        (["Temuco", "Carahue", "Capitan Pastene","Cunco", "Curarrehue", "Freire", "Galvarino", "Gorbea", "Lautaro", "Loncoche", "Melipeuco", "Nueva Imperial", "Padre las Casas", "Perquenco", "Pitrufquen", "Pucon", "Saavedra", "Teodoro Schmidt", "Tolten", "Vilcun", "Villarrica", "Cholchol", "Angol", "Collipulli", "Curacautin", "Ercilla", "Lonquimay", "Los Sauces", "Lumaco", "Puren", "Renaico", "Traiguen", "Victoria"]).forEach(
+        (["Temuco", "Carahue","Cunco", "Curarrehue", "Freire", "Galvarino", "Gorbea", "Lautaro", "Loncoche", "Melipeuco", "Nueva Imperial", "Padre las Casas", "Perquenco", "Pitrufquen", "Pucon", "Saavedra", "Teodoro Schmidt", "Tolten", "Vilcun", "Villarrica", "Cholchol", "Angol", "Collipulli", "Curacautin", "Ercilla", "Lonquimay", "Los Sauces", "Lumaco", "Puren", "Renaico", "Traiguen", "Victoria"]).forEach(
             (element) => {
                 let option = document.createElement("option");
                 option.text = element;
@@ -121,7 +121,7 @@ function cargarComuna(){
                 selectTipos.add(option);
             });
     } else if (region == "Región Aisén del General Carlos Ibáñez del Campo") {
-        (["Coyhaique", "Lago Verde", "Aisen", "Cisnes", "Guaitecas", "Cochrane", "O'Higgins", "Tortel", "Chile Chico", "Rio Ibañez"]).forEach(
+        (["Coyhaique", "Lago Verde", "Aisen", "Cisnes", "Guaitecas", "Cochrane", "O''Higins", "Tortel", "Chile Chico", "Rio Ibañez"]).forEach(
             (element) => {
                 let option = document.createElement("option");
                 option.text = element;

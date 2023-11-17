@@ -12,10 +12,10 @@
         <h2>Registrar hincha</h2>
     </header>
     
-        <form name="form_agregar_hincha" method="post">
+        <form name="form_agregar_hincha" method="POST">
             
             <label for="deportes">Deporte(s) que interesa apoyar</label><br>
-            <select id="deportes" name="deportes" multiple required>
+            <select name="deportes" id="deportes" multiple required>
                 <option value="Clavados">Clavados</option>
                 <option value="Natación">Natación</option>
                 <option value="Natación artística">Natación artística</option>
@@ -79,7 +79,7 @@
             </select><br>
             
             <label for="region">Región</label><br>
-            <select id="region" required onchange="cargarComuna()">
+            <select name="region" id="region" required onchange="cargarComuna()">
                 <option value="" selected>Seleccione Región</option>
                 <option value="Región Arica y Parinacota">Región de Arica y Parinacota</option>
                 <option value="Región de Tarapacá">Región de Tarapacá</option>
@@ -100,7 +100,7 @@
             </select><br>
 
             <label for="comuna">Comuna</label><br>
-            <select id="comuna" required>
+            <select name="comuna" id="comuna" required>
                 <option value="" selected>Seleccione Comuna</option>
             </select><br>
     

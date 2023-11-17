@@ -16,8 +16,6 @@
     "insertar_foto": "INSERT INTO foto (ruta_archivo, nombre_archivo, artesano_id) VALUES (%s,%s,%s);",
     "obtener_fotos_informadas_por_artesano": "SELECT ruta_archivo, nombre_archivo FROM foto WHERE artesano_id=%s",
     
-    "obtener_el_ultimo_id_insertado": "SELECT LAST_INSERT_ID();",
-
     "insertar_hincha": "INSERT INTO hincha (comuna_id, modo_transporte, nombre, email, celular, comentarios) VALUES (%s,%s,%s,%s,%s,%s);",
     "insertar_hincha_deporte": "INSERT INTO hincha_deporte (hincha_id, deporte_id) VALUES (%s,%s);",
     "obtener_deportes_de_hincha_particular": "SELECT D.nombre FROM deporte D, hincha_deporte HD WHERE HD.deporte_id=D.id AND HD.hincha_id=%s;",

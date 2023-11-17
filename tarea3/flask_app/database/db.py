@@ -57,7 +57,10 @@ def insertar_artesano(comuna_id, descripcion_artesania, nombre, email, celular):
 	conn = get_conn()
 	cursor = conn.cursor()
 	cursor.execute(QUERY_DICT["insertar_artesano"], (comuna_id, descripcion_artesania, nombre, email, celular))
+	cursor.execute("SELECT LAST_INSERT_ID();")
 	conn.commit()
+	artesano_id = cursor.fetchone()
+	return artesano_id
 
 def obtener_list_artesano_desde_mas_reciente(artesano):
 	conn = get_conn()
@@ -141,19 +144,14 @@ def obtener_fotos_informadas_por_artesano(artesano_id):
 	foto = cursor.fetchone()
 	return foto
 
-def obtener_el_ultimo_id_insertado():
-	conn = get_conn()
-	cursor = conn.cursor()
-	cursor.execute(QUERY_DICT["obtener_el_ultimo_id_insertado"])
-	id = cursor.fetchone()
-	return id
-
-
 def insertar_hincha(comuna_id, modo_transporte, nombre, email, celular, comentarios):
 	conn = get_conn()
 	cursor = conn.cursor()
 	cursor.execute(QUERY_DICT["insertar_hincha"], (comuna_id, modo_transporte, nombre, email, celular, comentarios))
+	cursor.execute("SELECT LAST_INSERT_ID();")
 	conn.commit()
+	hincha_id = cursor.fetchone()
+	return hincha_id
 	
 def insertar_hincha_deporte(hincha_id, deporte_id):
 	conn = get_conn()
