@@ -111,6 +111,15 @@ def obtener_list_artesano_con_nombre_comuna_en_lugar_de_ID(artesano, comuna):
 	artesano = cursor.fetchone()
 	return artesano
 
+def get_region_by_comuna_id(comuna_id):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["get_region_by_comuna_id"], (comuna_id,))
+	region_id = cursor.fetchone()
+	cursor.execute(QUERY_DICT["get_region_by_region_id"], (region_id,))
+	region_nombre = cursor.fetchone()
+	return region_nombre
+
 def insertar_artesano_tipo(artesano_id, tipo_artesania_id):
 	conn = get_conn()
 	cursor = conn.cursor()
@@ -144,6 +153,13 @@ def obtener_fotos_informadas_por_artesano(artesano_id):
 	foto = cursor.fetchone()
 	return foto
 
+def get_artesano_by_id(artesano_id):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["get_artesano_by_id"], (artesano_id,))
+	artesano = cursor.fetchone()
+	return artesano
+
 def insertar_hincha(comuna_id, modo_transporte, nombre, email, celular, comentarios):
 	conn = get_conn()
 	cursor = conn.cursor()
@@ -152,7 +168,21 @@ def insertar_hincha(comuna_id, modo_transporte, nombre, email, celular, comentar
 	conn.commit()
 	hincha_id = cursor.fetchone()
 	return hincha_id
-	
+
+def get_hincha_by_id(hincha_id):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["get_hincha_by_id"], (hincha_id,))
+	hincha = cursor.fetchone()
+	return hincha
+
+def get_deporte_id_by_deporte(deporte):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute(QUERY_DICT["get_deporte_id_by_deporte"], (deporte,))
+	deporte_id = cursor.fetchone()
+	return deporte_id
+
 def insertar_hincha_deporte(hincha_id, deporte_id):
 	conn = get_conn()
 	cursor = conn.cursor()
@@ -187,30 +217,25 @@ def get_hinchas_by_page_prev_next(pag_prev, pag_next):
 	hinchas = cursor.fetchall()
 	return hinchas
 
-def obtener_datos():
-	# obtenermos datos de hinchas y artesanos para graficar los dos graficos en estadisticas.html
-	# 
-    conn = get_conn()
-    cursor = conn.cursor()
+def obtener_datos_artesania():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("SELECT tipo_artesania.nombre, COUNT(artesano_tipo.artesano_id) AS total \
+				FROM tipo_artesania LEFT JOIN artesano_tipo \
+				ON tipo_artesania.id = artesano_tipo.tipo_artesania_id \
+				GROUP BY tipo_artesania.nombre")
+	data = cursor.fetchall()
+	return data
 
-    # Obtener datos de artesanos
-    cursor.execute("SELECT * FROM artesano;")
-    resultados_artesanos = cursor.fetchall()
-    datos_artesanos = [resultado[0] for resultado in resultados_artesanos]
-
-    # Obtener datos de hinchas
-    cursor.execute("SELECT * FROM hincha;")
-    resultados_hinchas = cursor.fetchall()
-    datos_hinchas = [resultado[0] for resultado in resultados_hinchas]
-
-    conn.close()
-
-    datos = {
-        'artesanos': datos_artesanos,
-        'hinchas': datos_hinchas
-    }
-
-    return datos
+def obtener_datos_deporte():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("SELECT deporte.nombre, COUNT(hincha_deporte.hincha_id) AS total \
+				FROM deporte LEFT JOIN hincha_deporte \
+				ON deporte.id = hincha_deporte.deporte_id \
+				GROUP BY deporte.nombre")
+	data = cursor.fetchall()
+	return data
 
 # -- db-related functions --
 

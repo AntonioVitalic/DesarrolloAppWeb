@@ -39,3 +39,25 @@ nav ul {
   flex: 33.33%;
   padding: 5px;
 }
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #000000;
+  padding: 10px;
+}
+
+.table-row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.table-column {
+  flex: 1;
+  padding: 5px;
+  border: 1px solid #000000;
+}
+
+.header {
+  font-weight: bold;
+}

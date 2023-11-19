@@ -4,9 +4,28 @@
     <header>
         <h2>Información hincha</h2>
     </header>
-    <body>
-        <div class="container">
-            <p>Pendiente para siguiente tarea.</p>
+    <div class="table-container">
+        <div class="table-row header">
+            <div class="table-column">Nombre</div>
+            <div class="table-column">Teléfono</div>
+            <div class="table-column">Comuna</div>
+            <div class="table-column">Región</div>
+            <div class="table-column">Email</div>
+            <div class="table-column">Deportes</div>
+            <div class="table-column">Modo transporte</div>
+            <div class="table-column">Comentarios</div>
         </div>
-    </body>
+        {% if data %}
+        <a class="table-row">
+            <div class="table-column">{{ data.hincha_nombre }}</div>
+            <div class="table-column">{{ data.celular }}</div>
+            <div class="table-column">{{ data.comuna_nombre }}</div>
+            <div class="table-column">{{ data.region_nombre }}</div>
+            <div class="table-column">{{ data.email }}</div>
+            <div class="table-column">{{ data.deportes }}</div>
+            <div class="table-column">{{ data.modo_transporte }}</div>
+            <div class="table-column">{{ data.comentarios }}</div>
+        </a>
+        {% endif %}
+    </div>
 {% endblock %}

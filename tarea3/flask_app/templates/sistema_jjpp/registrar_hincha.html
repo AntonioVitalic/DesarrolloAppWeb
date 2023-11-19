@@ -1,10 +1,7 @@
 {% extends "base.html" %}
 
 {% block css %}
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css"/>
 {% endblock %}
 
 {% block content %}
@@ -131,18 +128,18 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
-<!-- Créditos a https://github.com/habibmhamadi/multi-select-tag por la selección múltiple para deportes-->
-<script>
-    new MultiSelectTag('deportes', {
-        rounded: true,    // default true
-        shadow: false,      // default false
-        placeholder: 'Search',  // default Search...
-        onChange: function(values) {
-            console.log(values)
-        }
-        })
-</script>
-<script src="{{ url_for('static', filename='js/cargarComuna.js') }}"></script>
-<script src="{{ url_for('static', filename='js/validar_formulario.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+    <!-- Créditos a https://github.com/habibmhamadi/multi-select-tag por la selección múltiple para deportes-->
+    <script>
+        new MultiSelectTag('deportes', {
+            rounded: true,    // default true
+            shadow: false,      // default false
+            placeholder: 'Search',  // default Search...
+            onChange: function(values) {
+                console.log(values)
+            }
+            })
+    </script>
+    <script src="{{ url_for('static', filename='js/cargarComuna.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/validar_formulario.js') }}"></script>
 {% endblock %}

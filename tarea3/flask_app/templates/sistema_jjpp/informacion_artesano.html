@@ -4,9 +4,30 @@
     <header>
         <h2>Información artesano</h2>
     </header>
-    <body>
-        <div class="container">
-            <p>Pendiente. Mostrar info de x artesano en particular, al hacer click en una fila.</p>
+    <div class="table-container">
+        <div class="table-row header">
+            <div class="table-column">Nombre</div>
+            <div class="table-column">Teléfono</div>
+            <div class="table-column">Comuna</div>
+            <div class="table-column">Región</div>
+            <div class="table-column">Email</div>
+            <div class="table-column">Tipo Artesanías</div>
+            <div class="table-column">Descripción</div>
+            <div class="table-column">Fotos</div>
         </div>
-    </body>
+        {% if data %}
+        <a class="table-row">
+            <div class="table-column">{{ data.artesano_nombre }}</div>
+            <div class="table-column">{{ data.celular }}</div>
+            <div class="table-column">{{ data.comuna_nombre }}</div>
+            <div class="table-column">{{ data.region_nombre }}</div>
+            <div class="table-column">{{ data.email }}</div>
+            <div class="table-column">{{ data.tipo_artesania }}</div>
+            <div class="table-column">{{ data.descripcion }}</div>
+            <div>
+                <img src="{{ data.path_image }}" alt="Foto artesano" width="150">
+            </div>
+        </a>
+        {% endif %}
+    </div>
 {% endblock %}

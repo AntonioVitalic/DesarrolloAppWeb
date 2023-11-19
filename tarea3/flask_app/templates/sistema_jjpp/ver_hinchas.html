@@ -4,31 +4,25 @@
     <header>
         <h2>Ver Hinchas</h2>
     </header>
-        <h3>Hacer click en una fila</h3>
-        <table>
-            <tr>
-                <th>Nombre</th>
-                <th>Comuna</th>
-                <th>Deportes</th>
-                <th>Modo Transporte</th>
-                <th>Número celular</th>
-            </tr>
-            {% for hincha in data %}
-            <tr>
-                <td>{{ hincha.hincha_nombre }}</td>
-                <td>{{ hincha.comuna_nombre }}</td>
-                <td>{{ hincha.deportes }}</td>
-                <td>{{ hincha.modo_transporte }}</td>
-                <td>{{ hincha.celular }}</td>
-            </tr>
-
-            {% endfor %}
-
-        </table>
-        <script>
-            // redirige a la página de información del hincha en informacion_hincha.html
-            function Mostrar() {
-                window.location.href = "informacion_hincha.html";
-            }
-        </script>
+    <h3>Hacer click en una fila</h3>
+        <div class="table-container">
+            <div class="table-row header">
+                <div class="table-column">Nombre</div>
+                <div class="table-column">Comuna</div>
+                <div class="table-column">Deportes</div>
+                <div class="table-column">Modo Transporte</div>
+                <div class="table-column">Número celular</div>
+            </div>
+            {% if data %}
+                {% for hincha in data %}
+                    <a href="{{ url_for('informacion_hincha', id=hincha.hincha_id) }}" class="table-row">
+                        <div class="table-column">{{ hincha.hincha_nombre }}</div>
+                        <div class="table-column">{{ hincha.comuna_nombre }}</div>
+                        <div class="table-column">{{ hincha.deportes }}</div>
+                        <div class="table-column">{{ hincha.modo_transporte }}</div>
+                        <div class="table-column">{{ hincha.celular }}</div>
+                    </a>
+                {% endfor %}
+            {% endif %}
+        </div>
 {% endblock %}

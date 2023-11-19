@@ -2,33 +2,29 @@
 
 {% block content %}
     <header>
-        <h2>Ver artesanos</h2>
+        <h2>Ver Artesanos</h2>
     </header>
-    <body>
-        <table>
-            <tr>
-                <th>Nombre</th>
-                <th>Teléfono</th>
-                <th>Comuna</th>
-                <th>Tipo Artesanías</th>
-                <th>Fotos</th>
-            </tr>
+    <h3>Hacer click en una fila</h3>
+    <div class="table-container">
+        <div class="table-row header">
+            <div class="table-column">Nombre</div>
+            <div class="table-column">Teléfono</div>
+            <div class="table-column">Comuna</div>
+            <div class="table-column">Tipo Artesanías</div>
+            <div class="table-column">Fotos</div>
+        </div>
+        {% if data %}
             {% for artesano in data %}
-            <tr>
-                <td>{{ artesano.artesano_nombre }}</td>
-                <td>{{ artesano.celular }}</td>
-                <td>{{ artesano.comuna_nombre }}</td>
-                <td>{{ artesano.tipo_artesania }}</td>
-                <td>{{ artesano.fotos }}</td>
-                <td><button onclick="Mostrar()">Mostrar</button></td>
-            </tr>
+                <a href="{{ url_for('informacion_artesano', id=artesano.artesano_id) }}" class="table-row">
+                    <div class="table-column">{{ artesano.artesano_nombre }}</div>
+                    <div class="table-column">{{ artesano.celular }}</div>
+                    <div class="table-column">{{ artesano.comuna_nombre }}</div>
+                    <div class="table-column">{{ artesano.tipo_artesania }}</div>
+                    <div class="table-column">
+                        <img src="{{ artesano.path_image }}" alt="Foto artesano" width="150">
+                    </div>
+                </a>
             {% endfor %}
-                
-        </table>
-        <script>
-            function Mostrar() {
-                window.location.href = "informacion_artesano.html";
-            }
-        </script>
-    </body>
+        {% endif %}
+    </div>
 {% endblock %}
